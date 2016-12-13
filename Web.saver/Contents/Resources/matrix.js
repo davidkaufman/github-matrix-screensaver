@@ -132,7 +132,7 @@
             ctx.shadowOffsetX = 0;
             ctx.shadowOffsetY = 0;
             ctx.shadowBlur = 3;
-            ctx.font = options.fontSize + "px 'Courier New'";
+            ctx.font = options.fontSize + "px 'Oxygen Mono'";
 
             for (var x = 0; x < columns.length; x++) {
                 var posX = x * options.fontSize;
@@ -163,7 +163,9 @@
             drawText();
         };
 
-        this.start = function () {
+        this.realStart = function () {
+            // this is the realStart() -- it's called by start() after
+            // the font has finished loading
             new Intro(options)
                 .start()
                 .then(function () {
@@ -174,6 +176,26 @@
                         $('.controls').show();
                     });
                 });
+        };
+
+        this.start = function() {
+            // this isn't the real start(). this preloads the font
+            // and, when that finishes, calls the realStart()
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'http://fonts.googleapis.com/css?family=Oxygen+Mono';
+            document.getElementsByTagName('head')[0].appendChild(link);
+
+            var that = this;
+
+            // Trick from http://stackoverflow.com/questions/2635814/
+            var image = new Image;
+            image.src = link.href;
+            image.onerror = function() {
+                ctx.font = '28px "Oxygen Mono"';
+                that.realStart()
+            };
         };
 
         this.pause = function () {
@@ -256,7 +278,7 @@
                     ctx.shadowOffsetX = 0;
                     ctx.shadowOffsetY = 0;
                     ctx.shadowBlur = 3;
-                    ctx.font = options.fontSize + "px 'Courier New'";
+                    ctx.font = options.fontSize + "px 'Oxygen Mono'";
                     ctx.fillStyle = "#0F0";
                     ctx.shadowColor = '#0F0';
 
@@ -294,7 +316,7 @@
 
     var matrix = new Matrix({
         canvas: canvas,
-        fontSize: 14,
+        fontSize: 28,
         alphaFading: 0.04,
         randomFactor: 0.995,
         intervalTime: 120

@@ -3,9 +3,11 @@
     padding: 0;
 }
 
-body {
+body, span {
     background: black;
 }
+
+@import url(http://fonts.googleapis.com/css?family=Oxygen+Mono);
 
 canvas {
     display: block;
