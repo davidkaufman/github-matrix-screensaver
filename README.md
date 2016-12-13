@@ -36,21 +36,21 @@ After making changes to the html, css and js files in Web.saver/Contents/Resourc
 
 2. Clear the cache
 
-   * rm -rf ~/Library/Caches/com.apple.systempreferences/
+    rm -rf ~/Library/Caches/com.apple.systempreferences/
 
 3. Re-install the screensaver
 
 4. Sometimes you may also need to add a cache-busting query string to
    the css and js URL's in index.html for instance, the `?v3` in:
 
-    * <script src="matrix.js?v3"></script>, or
-    * <link rel="stylesheet" href="matrix.css?v3">
+    * `<script src="matrix.js?v3"></script>`, or
+    * `<link rel="stylesheet" href="matrix.css?v3">`
 
     But you shouldn't need commit these, I've just found that they  may just help during the iterative development process
 
 ## Font face and font size changes
 
-This fork customeizes the font (from Courier New to Google's [Oxygen Mono](https://fonts.google.com/specimen/Oxygen+Mono) (which more closely resembles the Menlo font I use when coding on the Mac) and increases the font size to 28px from the default 14px (which looks quite tiny to me on a large retina display :))
+This fork customizes the font from Courier New to Google's [Oxygen Mono](https://fonts.google.com/specimen/Oxygen+Mono) (which more closely resembles the Menlo font I use when coding on the Mac) and increases the font size to 28px from the default 14px (which looks quite tiny to me on a large retina display :))
 
 
 ## Binary License
